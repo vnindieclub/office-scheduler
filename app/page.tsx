@@ -91,91 +91,91 @@ const [commitHours, setCommitHours] = useState<string>("30");
 
   // 7. Render JSX -> Đã kiểm tra đóng mở thẻ <div>, <table>, ngoặc nhọn {} trong style
   return (
-    <div style={{ padding: '40px', backgroundColor: '#f1f5f9', minHeight: '100vh', color: '#000000', fontFamily: 'sans-serif' }}>
+    <div style={{ padding: '10px', backgroundColor: '#f1f5f9', minHeight: '100vh', color: '#000000', fontFamily: 'sans-serif' }}>
       
-      <div style={{ maxWidth: '1100px', margin: '0 auto', backgroundColor: '#ffffff', padding: '30px', border: '1px solid #cbd5e1' }}>
-        <h1 style={{ textAlign: 'center', marginBottom: '30px', fontWeight: '900', color: '#1e3a8a', textTransform: 'uppercase' }}>
+      <div style={{ maxWidth: '1100px', margin: '0 auto', backgroundColor: '#ffffff', padding: '15px', border: '1px solid #cbd5e1', borderRadius: '8px' }}>
+        <h1 style={{ textAlign: 'center', marginBottom: '20px', fontWeight: '900', color: '#1e3a8a', textTransform: 'uppercase', fontSize: '1.2rem' }}>
           Máy tính thời gian tham gia văn phòng
         </h1>
         
-        {/* Input Tên nhân viên + Ngày nhập */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '25px' }}>
-  <div>
-    <label style={{ display: 'block', fontWeight: 'bold', fontSize: '11px', color: '#64748b', marginBottom: '5px' }}>TÊN NHÂN VIÊN</label>
-    <input 
-      type="text" 
-      value={userName}
-      onChange={(e) => setUserName(e.target.value)}
-      placeholder="Họ và tên..."
-      style={{ width: '100%', padding: '10px', border: '1px solid #cbd5e1', borderRadius: '4px', outline: 'none' }}
-    />
-  </div>
-  <div>
-    <label style={{ display: 'block', fontWeight: 'bold', fontSize: '11px', color: '#64748b', marginBottom: '5px' }}>NGÀY ÁP DỤNG</label>
-    <input 
-      type="date" 
-      value={selectedDate}
-      onChange={(e) => setSelectedDate(e.target.value)}
-      style={{ width: '100%', padding: '10px', border: '1px solid #cbd5e1', borderRadius: '4px', outline: 'none' }}
-    />
-  </div>
-</div>
-
-        {/* Dashboard Thống kê */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', border: '2px solid #000000', marginBottom: '30px' }}>
-          <div style={{ padding: '15px', borderRight: '2px solid #000000', borderBottom: '2px solid #000000', backgroundColor: '#f8fafc' }}>
-            <span style={{ fontWeight: 'bold', fontSize: '12px', color: '#64748b' }}>SỐ GIỜ BẮT BUỘC</span>
-            <div style={{ fontSize: '24px', fontWeight: '900' }}>{requiredHoursTotal}h</div>
+        {/* Input Tên nhân viên + Ngày nhập - STACKS ON MOBILE */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', marginBottom: '25px' }}>
+          <div style={{ flex: 1 }}>
+            <label style={{ display: 'block', fontWeight: 'bold', fontSize: '11px', color: '#64748b', marginBottom: '5px' }}>TÊN NHÂN VIÊN</label>
+            <input 
+              type="text" 
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              placeholder="Họ và tên..."
+              style={{ width: '100%', padding: '12px', border: '1px solid #cbd5e1', borderRadius: '4px', outline: 'none', fontSize: '16px' }} // 16px prevents iOS zoom
+            />
           </div>
-          <div style={{ padding: '15px', borderBottom: '2px solid #000000' }}>
-            <span style={{ fontWeight: 'bold', fontSize: '12px', color: '#64748b' }}>SỐ GIỜ CAM KẾT</span>
+          <div style={{ flex: 1 }}>
+            <label style={{ display: 'block', fontWeight: 'bold', fontSize: '11px', color: '#64748b', marginBottom: '5px' }}>NGÀY ÁP DỤNG</label>
+            <input 
+              type="date" 
+              value={selectedDate}
+              onChange={(e) => setSelectedDate(e.target.value)}
+              style={{ width: '100%', padding: '12px', border: '1px solid #cbd5e1', borderRadius: '4px', outline: 'none', fontSize: '16px' }}
+            />
+          </div>
+        </div>
+
+        {/* Dashboard Thống kê - WRAPS ON MOBILE */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', border: '2px solid #000000', marginBottom: '30px' }}>
+          <div style={{ flex: '1 1 50%', padding: '15px', borderRight: '1px solid #000000', borderBottom: '1px solid #000000', backgroundColor: '#f8fafc' }}>
+            <span style={{ fontWeight: 'bold', fontSize: '10px', color: '#64748b' }}>SỐ GIỜ BẮT BUỘC</span>
+            <div style={{ fontSize: '20px', fontWeight: '900' }}>{requiredHoursTotal}h</div>
+          </div>
+          <div style={{ flex: '1 1 50%', padding: '15px', borderBottom: '1px solid #000000' }}>
+            <span style={{ fontWeight: 'bold', fontSize: '10px', color: '#64748b' }}>SỐ GIỜ CAM KẾT</span>
             <input 
               type="number" 
               value={commitHours}
               onChange={handleCommitChange}
-              style={{ fontSize: '24px', fontWeight: '900', width: '100%', border: 'none', outline: 'none' }}
+              style={{ fontSize: '20px', fontWeight: '900', width: '100%', border: 'none', outline: 'none' }}
             />
           </div>
-          <div style={{ padding: '15px', backgroundColor: '#f8fafc', borderRight: '2px solid #000000' }}>
-            <span style={{ fontWeight: 'bold', fontSize: '12px', color: '#64748b' }}>TỔNG GIỜ HIỆN TẠI</span>
-            <div style={{ fontSize: '24px', fontWeight: '900', color: isEnough ? '#16a34a' : '#ea580c' }}>
+          <div style={{ flex: '1 1 50%', padding: '15px', backgroundColor: '#f8fafc', borderRight: '1px solid #000000' }}>
+            <span style={{ fontWeight: 'bold', fontSize: '10px', color: '#64748b' }}>TỔNG GIỜ</span>
+            <div style={{ fontSize: '20px', fontWeight: '900', color: isEnough ? '#16a34a' : '#ea580c' }}>
               {totalHours}h / {target}h
             </div>
           </div>
-          <div style={{ padding: '15px', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: isEnough ? '#16a34a' : '#1e293b', color: isEnough ? '#ffffff' : '#fdba74' }}>
-             <span style={{ fontWeight: 'bold' }}>{isEnough ? "✓ ĐÃ ĐẠT MỤC TIÊU" : `CẦN THÊM ${target - totalHours}H`}</span>
+          <div style={{ flex: '1 1 50%', padding: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: isEnough ? '#16a34a' : '#1e293b', color: isEnough ? '#ffffff' : '#fdba74', textAlign: 'center' }}>
+             <span style={{ fontWeight: 'bold', fontSize: '12px' }}>{isEnough ? "✓ ĐỦ ĐIỀU KIỆN" : `THIẾU ${target - totalHours}H`}</span>
           </div>
         </div>
 
-        {/* Bảng Tick chọn (Giao diện Web) */}
-        <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #94a3b8' }}>
+        {/* Bảng Tick chọn - SCROLLABLE FOR MOBILE */}
+        <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', border: '1px solid #94a3b8', borderRadius: '4px' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '700px' }}>
             <thead>
               <tr style={{ backgroundColor: '#1e293b', color: '#ffffff' }}>
-                <th style={{ border: '1px solid #94a3b8', padding: '10px' }}>Thời gian</th>
+                <th style={{ border: '1px solid #94a3b8', padding: '12px' }}>Thời gian</th>
                 {DAYS.map(day => (
-                  <th key={day} style={{ border: '1px solid #94a3b8', padding: '10px', fontSize: '12px' }}>{day}</th>
+                  <th key={day} style={{ border: '1px solid #94a3b8', padding: '12px', fontSize: '12px' }}>{day}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {TIME_SLOTS.map(time => (
                 <tr key={time}>
-                  <td style={{ border: '1px solid #94a3b8', padding: '8px', textAlign: 'center', fontWeight: 'bold', backgroundColor: '#f8fafc', fontSize: '11px' }}>{time}</td>
+                  <td style={{ border: '1px solid #94a3b8', padding: '10px', textAlign: 'center', fontWeight: 'bold', backgroundColor: '#f8fafc', fontSize: '11px' }}>{time}</td>
                   {DAYS.map(day => {
                     const id = `${day}-${time}`;
                     const isOff = OFF_SLOTS.some(off => id.includes(off));
                     const isRequired = REQUIRED_SLOTS.includes(id);
                     const isSelected = selectedOptional.includes(id);
                     
-                    if (isOff) return <td key={id} style={{ border: '1px solid #94a3b8', backgroundColor: '#e2e8f0', textAlign: 'center', fontSize: '10px' }}>Nghỉ</td>;
+                    if (isOff) return <td key={id} style={{ border: '1px solid #94a3b8', backgroundColor: '#e2e8f0', textAlign: 'center', fontSize: '10px', color: '#94a3b8' }}>Nghỉ</td>;
                     if (isRequired) return <td key={id} style={{ border: '1px solid #94a3b8', backgroundColor: '#fef9c3', textAlign: 'center', fontSize: '10px', fontWeight: 'bold' }}>Bắt buộc</td>;
                     
                     return (
                       <td key={id} 
                           onClick={() => toggleCell(id)}
-                          style={{ border: '1px solid #94a3b8', textAlign: 'center', padding: '8px', cursor: 'pointer', backgroundColor: isSelected ? '#dcfce7' : '#ffffff' }}>
-                        <input type="checkbox" checked={isSelected} readOnly style={{ width: '18px', height: '18px' }} />
+                          style={{ border: '1px solid #94a3b8', textAlign: 'center', padding: '15px', cursor: 'pointer', backgroundColor: isSelected ? '#dcfce7' : '#ffffff' }}>
+                        <input type="checkbox" checked={isSelected} readOnly style={{ width: '22px', height: '22px' }} />
                       </td>
                     );
                   })}
@@ -184,58 +184,52 @@ const [commitHours, setCommitHours] = useState<string>("30");
             </tbody>
           </table>
         </div>
+        <div style={{ textAlign: 'center', marginTop: '10px', color: '#64748b', fontSize: '12px' }}>
+          ← Vuốt sang ngang để xem đủ các ngày →
+        </div>
       </div>
 
       <button 
         onClick={exportPDF}
         disabled={!isEnough}
         style={{ 
-          maxWidth: '1100px', margin: '30px auto 0', display: 'block', width: '100%', padding: '15px', 
+          maxWidth: '1100px', margin: '20px auto', display: 'block', width: '100%', padding: '18px', 
           borderRadius: '10px', fontWeight: 'bold', border: 'none', cursor: isEnough ? 'pointer' : 'not-allowed',
-          backgroundColor: isEnough ? '#2563eb' : '#cbd5e1', color: isEnough ? '#ffffff' : '#64748b'
+          backgroundColor: isEnough ? '#2563eb' : '#cbd5e1', color: isEnough ? '#ffffff' : '#64748b', fontSize: '16px'
         }}
       >
-        {isEnough ? "XUẤT LỊCH LÀM VIỆC (PDF)" : "VUI LÒNG CHỌN ĐỦ GIỜ CAM KẾT"}
+        {isEnough ? "XUẤT LỊCH (PDF)" : "VUI LÒNG CHỌN ĐỦ GIỜ"}
       </button>
 
-      {/* NEW: VISIBILITY FIX - Position off-screen instead of display:none */}
+      {/* PDF HIDDEN AREA - Unchanged to maintain export quality */}
       <div style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
         <div ref={pdfExportRef} style={{ width: '800px', minHeight: '1000px', padding: '50px', backgroundColor: '#ffffff', color: '#000000', fontFamily: 'Arial, sans-serif' }}>
-            
-            {/* HEADER */}
             <h1 style={{ textAlign: 'center', fontSize: '24px', fontWeight: 'bold', marginBottom: '10px' }}>LỊCH LÀM VIỆC CHÍNH THỨC</h1>
-<p style={{ textAlign: 'center', fontSize: '14px', marginBottom: '30px' }}>
-    Nhân viên: <strong>{userName}</strong> | Ngày áp dụng: <strong>{formatDate(selectedDate)}</strong>
-</p>
-            
-            {/* SUMMARY BOX */}
+            <p style={{ textAlign: 'center', fontSize: '14px', marginBottom: '30px' }}>
+                Nhân viên: <strong>{userName}</strong> | Ngày áp dụng: <strong>{formatDate(selectedDate)}</strong>
+            </p>
             <div style={{ borderTop: '2px solid #000', borderBottom: '2px solid #000', padding: '15px 0', marginBottom: '30px', display: 'flex', justifyContent: 'space-between' }}>
                 <span><strong>Giờ cam kết:</strong> {target} giờ</span>
                 <span><strong>Tổng giờ đăng ký:</strong> {totalHours} giờ</span>
             </div>
-
-            {/* TABLE LIST */}
             <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '20px' }}>
                 <thead>
                     <tr style={{ backgroundColor: '#f1f5f9' }}>
                         <th style={{ border: '1px solid #000', padding: '12px', textAlign: 'left' }}>Ngày trong tuần</th>
-                        <th style={{ border: '1px solid #000', padding: '12px', textAlign: 'left' }}>Khung giờ làm việc (Start - End)</th>
+                        <th style={{ border: '1px solid #000', padding: '12px', textAlign: 'left' }}>Khung giờ làm việc</th>
                     </tr>
                 </thead>
                 <tbody>
                     {getScheduleSummary().map(item => (
                         <tr key={item.day}>
                             <td style={{ border: '1px solid #000', padding: '12px', fontWeight: 'bold' }}>{item.day}</td>
-                            <td style={{ border: '1px solid #000', padding: '12px', color: item.range === 'Nghỉ' ? '#999' : '#000' }}>
-                                {item.range}
-                            </td>
+                            <td style={{ border: '1px solid #000', padding: '12px', color: item.range === 'Nghỉ' ? '#999' : '#000' }}>{item.range}</td>
                         </tr>
                     ))}
                 </tbody>
             </table>
         </div>
       </div>
-      
     </div>
   );
 }
