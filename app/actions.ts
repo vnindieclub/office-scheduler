@@ -116,15 +116,8 @@ export async function submitSchedule(teamName: string, input: any, imgBase64: st
       multi_select: [{ name: teamName }] 
     };
 
-    // Create the Summary/Report Page
-    await notion.pages.create({
-      parent: { data_source_id: dsId },
-      properties: {
-        "Name": { title: [{ text: { content: `${input.userName} - Tổng hợp` } }] },
-        "Team": teamProperty,
-        "Date": { date: { start: input.selectedDate } } 
-      }
-    });
+
+
 
     // Create the individual Shift rows
     const promises = input.allShifts.map((shift: any) => 
